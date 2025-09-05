@@ -1,5 +1,6 @@
 /* Global Reset */
 body, html, section, footer, h1, h2, p {
+  overflow-x: hidden; /* no left-right scroll */
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
@@ -343,3 +344,35 @@ body.fade-out { opacity: 0; }
 }
 .highlight-grid.winners .team-card p { color: #ffdd55; }
 .highlight-grid.other-teams .team-card p { color: #000; }
+/* Shared gallery style for winners, other teams, and game pages */
+.highlight-grid, 
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;            /* allows wrapping to new line */
+  justify-content: center;    /* center align items */
+  gap: 15px;                  /* space between cards */
+  margin: 20px auto;
+  max-width: 1200px;
+  padding: 0 10px;
+}
+
+/* Team/game cards */
+.team-card {
+  flex: 1 1 calc(25% - 15px); /* 4 per row on desktop */
+  max-width: calc(25% - 15px);
+  text-align: center;
+}
+
+.team-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Mobile layout (≤768px) → 2 per row */
+@media (max-width: 768px) {
+  .team-card {
+    flex: 1 1 calc(50% - 15px); /* 2 per row */
+    max-width: calc(50% - 15px);
+  }
+}
