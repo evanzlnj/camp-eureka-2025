@@ -224,12 +224,16 @@ body.fade-out { opacity: 0; }
 }
 .game-hero h1 {
   font-family: 'Cinzel', serif;
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2rem, 8vw, 4rem); /* responsive min 2rem, max 4rem */
   color: #ffcc00;
-  letter-spacing: 2px;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-  margin-bottom: 30px;
+  letter-spacing: 2px;
+  text-align: center;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  word-wrap: break-word; /* ensures long words wrap */
 }
+
 
 .game-tile-image {
   max-width: 400px;
@@ -376,4 +380,5 @@ body.fade-out { opacity: 0; }
     max-width: calc(50% - 15px);
   }
 }
+
 
