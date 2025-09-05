@@ -63,3 +63,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+const hamburger = document.querySelector(".hamburger");
+const sidebar = document.querySelector(".sidebar");
+
+hamburger.addEventListener("click", () => {
+  sidebar.classList.add("active");
+  hamburger.classList.add("hidden");
+});
+
+// Close sidebar when clicking outside it
+document.addEventListener("click", (e) => {
+  if (sidebar.classList.contains("active") &&
+      !sidebar.contains(e.target) &&
+      !hamburger.contains(e.target)) {
+    sidebar.classList.remove("active");
+    hamburger.classList.remove("hidden");
+  }
+});
