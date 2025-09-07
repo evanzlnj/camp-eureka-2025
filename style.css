@@ -9,21 +9,43 @@ body, html, section, footer, h1, h2, p {
 
 /* Apply one continuous animated gradient to the whole page */
 body {
-  background: linear-gradient(-45deg, #013220, #064635, #1b5e20, #0b3d2e);
+  background: linear-gradient(-45deg, #013220, #064635, #34b03c, #0b3d2e);
   background-size: 400% 400%;
   animation: gradientMove 12s ease infinite;
   transition: opacity 0.8s ease; /* smooth transition */
   opacity: 1; /* prevent flash of blank page */
+    -webkit-animation: gradientShift 15s ease infinite; /* Safari & iOS */
+  -moz-animation: gradientShift 15s ease infinite;    /* Firefox */
+  -o-animation: gradientShift 15s ease infinite;      /* Older Opera */
 }
 
 body.fade-in { opacity: 1; }
 body.fade-out { opacity: 0; }
 
-/* Gradient animation */
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Keyframes for background movement */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Safari/iOS sometimes needs explicit */
+@-webkit-keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* --------------------------------- */
@@ -184,7 +206,6 @@ body.fade-out { opacity: 0; }
 .sidebar.active {
   left: 0; /* slides in */
 }
-/* === Content Centering Fix === */
 /* Ensure page content fills full width */
 .page-content {
   margin: 0 auto;         /* centers the block itself */
@@ -455,4 +476,3 @@ body.fade-out { opacity: 0; }
     max-width: calc(50% - 15px);
   }
 }
-
