@@ -185,9 +185,30 @@ body.fade-out { opacity: 0; }
   left: 0; /* slides in */
 }
 /* === Content Centering Fix === */
-.page-content, .game-hero, .overlay {
-  text-align: center;
+/* Ensure page content fills full width */
+.page-content {
+  margin: 0 auto;         /* centers the block itself */
+  padding: 20px;
+  max-width: 100%;        /* no unintended shrinking */
+  text-align: center;     /* centers inline text & elements */
+  box-sizing: border-box; /* prevent overflow issues */
 }
+
+/* Prevent sidebar from pushing content on mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -250px;          /* stays hidden unless opened */
+    width: 250px;
+  }
+
+  .page-content {
+    margin: 0;             /* no offset */
+    width: 100%;           /* take full screen width */
+    padding: 15px;
+  }
+}
+
 /* Titles (Champions, Momento Mori, etc.) */
 .game-hero h1, .overlay h1 {
   font-family: 'Cinzel', serif;
@@ -434,3 +455,4 @@ body.fade-out { opacity: 0; }
     max-width: calc(50% - 15px);
   }
 }
+
