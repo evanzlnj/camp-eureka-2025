@@ -61,7 +61,6 @@ body.fade-out { opacity: 0; }
   text-transform: uppercase;
   color: #ffcc00;
   text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-  line-height: 1.2;
 }
 .overlay p {
   font-family: 'Cormorant Garamond', serif;
@@ -251,19 +250,44 @@ body.fade-out { opacity: 0; }
 /* --------------------------------- */
 /* Game Pages */
 /* --------------------------------- */
+/* Hero Section Styling */
 .game-hero {
-  width: 100%;
-  text-align: center;
-  padding: 30px 20px 10px 20px;
+  text-align: center;        /* centers content horizontally */
+  margin: 20px 0;
 }
+
 .game-hero h1 {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  color: #ffcc00;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-  margin-bottom: 30px;
+  font-family: 'Cinzel', serif; /* matches your font */
+  font-size: 3rem;              /* default desktop size */
+  font-weight: 600;
+  margin: 0 auto;
+  text-align: center;
+          /* better spacing */
+  word-wrap: break-word;        /* breaks long words if needed */
+  overflow-wrap: break-word;
 }
+
+/* Responsive Adjustments for Tablets */
+@media (max-width: 900px) {
+  .game-hero h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Responsive Adjustments for Mobile */
+@media (max-width: 600px) {
+  .game-hero h1 {
+    font-size: 2rem;        /* smaller size for narrow screens */
+  }
+}
+
+/* Very small devices */
+@media (max-width: 400px) {
+  .game-hero h1 {
+    font-size: 1.6rem;
+  }
+}
+
 
 .game-tile-image {
   max-width: 400px;
