@@ -63,20 +63,54 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-const hamburger = document.querySelector(".hamburger");
-const sidebar = document.querySelector(".sidebar");
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector('.hamburger');
+  const sidebar = document.querySelector('.sidebar');
+  const body = document.body;
 
-hamburger.addEventListener("click", () => {
-  sidebar.classList.add("active");
-  hamburger.classList.add("hidden");
-});
+  // Ensure initial state
+  body.classList.add('sidebar-closed');
 
-// Close sidebar when clicking outside it
-document.addEventListener("click", (e) => {
-  if (sidebar.classList.contains("active") &&
-      !sidebar.contains(e.target) &&
-      !hamburger.contains(e.target)) {
-    sidebar.classList.remove("active");
-    hamburger.classList.remove("hidden");
+  function toggleSidebar() {
+    const isOpen = sidebar.classList.contains('active');
+    if (isOpen) {
+      // Closing sidebar
+      sidebar.classList.remove('active');
+      body.classList.add('sidebar-closed');
+      body.classList.remove('sidebar-open');
+    } else {
+      // Opening sidebar
+      sidebar.classList.add('active');
+      body.classList.add('sidebar-open');
+      body.classList.remove('sidebar-closed');
+    }
   }
+
+  // Toggle when hamburger clicked
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation(); // prevent immediate outside click closing
+    toggleSidebar();
+  });
+
+  // Close sidebar when clicking outside
+  document.addEventListener('click', (e) => {
+    if (
+      sidebar.classList.contains('active') &&
+      !sidebar.contains(e.target) &&
+      !hamburger.contains(e.target)
+    ) {
+      sidebar.classList.remove('active');
+      body.classList.add('sidebar-closed');
+      body.classList.remove('sidebar-open');
+    }
+  });
+
+  // Auto close sidebar after link click
+  sidebar.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      body.classList.add('sidebar-closed');
+      body.classList.remove('sidebar-open');
+    });
+  });
 });
