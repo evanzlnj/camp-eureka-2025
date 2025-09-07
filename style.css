@@ -142,36 +142,70 @@ body.fade-out { opacity: 0; }
 /* --------------------------------- */
 /* Sidebar + Hamburger Menu */
 /* --------------------------------- */
+/* === Hamburger Button (Hidden by Default, Peeks Out) === */
 .hamburger {
-  font-size: 2rem;
-  color: #fff;
-  cursor: pointer;
-  padding: 12px 16px;
   position: fixed;
   top: 15px;
-  left: 15px;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 8px;
+  left: -40px; /* hidden off-screen except small tab */
+  width: 50px;
+  height: 40px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 0 8px 8px 0;
+  font-size: 1.5rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   z-index: 1100;
-  display: block; /* always visible */
+  transition: left 0.3s ease;
 }
-/* Sidebar base */
+/* When sidebar is closed, hamburger peeks slightly */
+.sidebar-closed .hamburger {
+  left: 0; /* show just the tab */
+}
+
+/* When sidebar is open, hamburger slides with sidebar */
+.sidebar-open .hamburger {
+  left: 200px; /* aligns at edge of sidebar */
+}
+/* === Sidebar Styling === */
 .sidebar {
-  width: 250px;
-  background: rgba(11, 61, 46, 0.95); /* jungle theme */
-  height: 100%;
   position: fixed;
   top: 0;
-  left: -250px; /* hidden off screen by default */
-  overflow-y: auto;
+  left: -200px; /* hidden */
+  width: 200px;
+  height: 100%;
+  background: rgba(11, 61, 46, 0.95);
+  color: #fff;
   transition: left 0.3s ease;
   z-index: 1000;
-  padding-top: 60px; /* leave space for hamburger */
+  overflow-y: auto;
 }
 .sidebar.active {
   left: 0; /* slides in */
 }
+/* === Content Centering Fix === */
+.page-content, .game-hero, .overlay {
+  text-align: center;
+}
+/* Titles (Champions, Momento Mori, etc.) */
+.game-hero h1, .overlay h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 7vw, 4rem);
+  color: #ffcc00;
+  margin: 0 auto 20px auto;
+  max-width: 90%; /* ensures no overflow */
+  word-wrap: break-word;
+}
 
+/* Game tiles always centered */
+.game-tile-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 90%;
+  border-radius: 20px;
+}
 .sidebar ul {
   list-style: none;
   padding: 0;
@@ -220,20 +254,16 @@ body.fade-out { opacity: 0; }
 .game-hero {
   width: 100%;
   text-align: center;
-  padding: 10px 20px 10px 20px;
+  padding: 30px 20px 10px 20px;
 }
 .game-hero h1 {
   font-family: 'Cinzel', serif;
-  font-size: clamp(2rem, 8vw, 4rem); /* responsive min 2rem, max 4rem */
+  font-size: clamp(2.5rem, 6vw, 4rem);
   color: #ffcc00;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
   letter-spacing: 2px;
-  text-align: center;
-  line-height: 1.2;
-  margin-bottom: 20px;
-  word-wrap: break-word; /* ensures long words wrap */
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+  margin-bottom: 30px;
 }
-
 
 .game-tile-image {
   max-width: 400px;
@@ -380,5 +410,3 @@ body.fade-out { opacity: 0; }
     max-width: calc(50% - 15px);
   }
 }
-
-
